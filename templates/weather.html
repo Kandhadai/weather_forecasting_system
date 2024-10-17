@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <!-- Added link to Home page and other navigation options -->
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li> <!-- Link to Home -->
+            <li><a href="{{ url_for('view_weather') }}">Latest Weather</a></li> <!-- Link for checking latest weather -->
+            <li><a href="{{ url_for('view_today_forecast') }}">Today's Forecast</a></li> <!-- Link to today's forecast -->
+            <li><a href="{{ url_for('view_extended_forecast') }}">Extended Forecast</a></li> <!-- Link to extended forecast -->
+            <li><a href="{{ url_for('view_historical_data') }}">Historical Data</a></li> <!-- Link to historical weather -->
+        </ul>
+    </nav>
+
+    <h1>Check Weather</h1>
+    <form method="POST">
+        <label for="location">Enter Location:</label>
+        <input type="text" name="location" placeholder="e.g., New York">
+        <input type="submit" value="Check Weather">
+    </form>
+
+    <!-- Display latest weather data if available -->
+    {% if weather %}
+        <h2>Weather for {{ location }}:</h2>
+        <p>Temperature: {{ weather.temperature }} °C</p>
+        <p>Conditions: {{ weather.conditions }}</p>
+        <p>Humidity: {{ weather.humidity }}</p>
+        <p>Wind Speed: {{ weather.wind_speed }}</p>
+        <p>Date: {{ weather.date }}</p>
+
+    <!-- Display if no weather data available -->
+    {% elif location %}
+        <p>No weather data available for {{ location }}.</p>
+    {% endif %}
+
+    <h2>Additional Weather Features</h2>
+
+    <!-- Form for Today's Forecast -->
+    <form method="GET" action="{{ url_for('view_today_forecast') }}">
+        <label for="today_location">Enter Location for Today's Forecast:</label>
+        <input type="text" name="location" id="today_location" placeholder="e.g., New York">
+        <button type="submit">View Today's Forecast</button>
+    </form>
+
+    <!-- Form for Extended Forecast -->
+    <form method="GET" action="{{ url_for('view_extended_forecast') }}">
+        <label for="extended_location">Enter Location for Extended Forecast:</label>
+        <input type="text" name="location" id="extended_location" placeholder="e.g., New York">
+        <label for="days">Days:</label>
+        <input type="number" name="days" id="days" value="7" min="1" max="14">
+        <button type="submit">View Extended Forecast</button>
+    </form>
+
+    <!-- Form for Historical Data -->
+    <form method="GET" action="{{ url_for('view_historical_data') }}">
+        <label for="historical_location">Enter Location for Historical Data:</label>
+        <input type="text" name="location" id="historical_location" placeholder="e.g., New York">
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" id="start_date">
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" id="end_date">
+        <button type="submit">View Historical Data</button>
+    </form>
+
+    <footer>
+        <p>&copy; 2024 Weather App</p>
+    </footer>
+</body>
+</html>

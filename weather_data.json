@@ -1,0 +1,9 @@
+[
+    {
+        "Date": 1,
+        "Temperature": "New York",
+        "Humidity": 18.5,
+        "Wind Speed": 60.0,
+        "Conditions": 10.0
+    }
+]

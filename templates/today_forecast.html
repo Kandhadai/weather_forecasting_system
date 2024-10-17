@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Forecast</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <!-- Navigation links -->
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('view_weather') }}">Latest Weather</a></li>
+            <li><a href="{{ url_for('view_today_forecast') }}">Today's Forecast</a></li>
+            <li><a href="{{ url_for('view_extended_forecast') }}">Extended Forecast</a></li>
+            <li><a href="{{ url_for('view_historical_data') }}">Historical Data</a></li>
+        </ul>
+    </nav>
+
+    <h1>Today's Forecast</h1>
+
+    <!-- Display forecast data if available -->
+    {% if forecast %}
+        <h2>Weather Forecast for {{ location }}:</h2>
+        <p>Temperature: {{ forecast.temperature }} °C</p>
+        <p>Conditions: {{ forecast.conditions }}</p>
+        <p>Humidity: {{ forecast.humidity }}</p>
+        <p>Wind Speed: {{ forecast.wind_speed }} km/h</p>
+        <p>Date: {{ forecast.date }}</p>
+    {% else %}
+        <p>No forecast data available for {{ location }}.</p>
+    {% endif %}
+
+    <footer>
+        <p>&copy; 2024 Weather App</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!-- templates/forecast.html -->
+{% extends 'base.html' %}
+{% block title %}Forecast{% endblock %}
+{% block content %}
+<h2>Weather Forecast for {{ location }}</h2>
+<ul>
+    {% for day in forecast %}
+    <li>{{ day.date }}: {{ day.temperature }}°C, {{ day.conditions }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

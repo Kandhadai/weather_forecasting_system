@@ -1,0 +1,26 @@
+<!-- templates/dashboard.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Customize Dashboard{% endblock %}
+
+{% block content %}
+<h2>Customize Your Dashboard</h2>
+<form method="POST" action="{{ url_for('customize_dashboard') }}">
+    <label for="theme">Theme:</label>
+    <select name="theme" id="theme">
+        <option value="light" {% if settings.theme == "light" %}selected{% endif %}>Light</option>
+        <option value="dark" {% if settings.theme == "dark" %}selected{% endif %}>Dark</option>
+    </select>
+
+    <label for="notifications">Notifications:</label>
+    <input type="checkbox" name="notifications" {% if settings.notifications %}checked{% endif %}>
+
+    <label for="layout">Layout:</label>
+    <select name="layout" id="layout">
+        <option value="grid" {% if settings.layout == "grid" %}selected{% endif %}>Grid</option>
+        <option value="list" {% if settings.layout == "list" %}selected{% endif %}>List</option>
+    </select>
+
+    <button type="submit">Save Settings</button>
+</form>
+{% endblock %}

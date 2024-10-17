@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <!-- Added link to Home page -->
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li> <!-- Change: This line was added -->
+        </ul>
+    </nav>
+
+    <h1>Check Weather</h1>
+    <form method="POST">
+        <label for="location">Enter Location:</label>
+        <input type="text" name="location" placeholder="e.g., New York">
+        <input type="submit" value="Check Weather">
+    </form>
+
+    {% if weather %}
+        <h2>Weather for {{ location }}:</h2>
+        <p>Temperature: {{ weather.temperature }} °C</p>
+        <p>Conditions: {{ weather.conditions }}</p>
+        <p>humidity: {{ weather.humidity }}</p>
+        <p>wind_Speed: {{ weather.wind_Speed }}</p>
+        <p>date: {{ weather.date }}</p>
+    {% elif location %}
+        <p>No weather data available for {{ location }}.</p>
+    {% endif %}
+
+    <footer>
+        <p>&copy; 2024 Weather App</p>
+    </footer>
+</body>
+</html>

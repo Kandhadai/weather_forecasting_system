@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home - Weather App{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Weather App</h1>
+    <p>Get the latest weather updates and manage your dashboard alerts.</p>
+
+    {% if session['self'] %}
+        <h2>Hello, {{ session['self'] }}!</h2>
+    {% else %}
+        <h3>Please log in to access more features.</h3>
+
+        <h3>Login</h3>
+        <form method="POST" action="{{ url_for('home') }}">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <input type="submit" name="login" value="Login">
+        </form>
+
+        <h3>Sign Up</h3>
+        <form method="POST" action="{{ url_for('home') }}">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" required><br>
+            <label for="address">Address (Optional):</label>
+            <input type="text" name="address"><br>
+            <label for="location">Location:</label>
+            <input type="text" name="location"><br>
+            <input type="submit" name="signup" value="Sign Up">
+        </form>
+    {% endif %}
+{% endblock %}

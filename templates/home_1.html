@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Weather App</h1>
+    <p>Get the latest weather updates and manage your dashboard alerts.</p>
+
+    <h2>Login</h2>
+    <form method="POST" action="{{ url_for('home') }}">
+        <label for="self">Username:</label>
+        <input type="text" name="self" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <button type="submit" name="login">Login</button>
+    </form>
+
+    <h2>Sign Up</h2>
+    <form method="POST" action="{{ url_for('home') }}">
+        <label for="signup_username">Username:</label>
+        <input type="text" name="signup_username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" name="confirm_password" required>
+
+        <!-- Optional fields -->
+        <label for="address">Address (Optional):</label>
+        <input type="text" name="address">
+
+        <label for="location">Location (Optional):</label>
+        <input type="text" name="location">
+
+        <button type="submit" name="signup">Sign Up</button>
+    </form>
+{% endblock %}

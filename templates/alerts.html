@@ -1,0 +1,31 @@
+<!-- templates/alerts.html -->
+{% extends 'base.html' %}
+{% block title %}Alerts{% endblock %}
+{% block content %}
+<h2>Manage Alerts</h2>
+<form action="{{ url_for('manage_alerts') }}" method="post">
+    <label for="alert_type">Alert Type:</label>
+    <select name="alert_type" id="alert_type">
+        <option value="temperature">Temperature</option>
+        <option value="humidity">Humidity</option>
+        <option value="wind_speed">Wind Speed</option>
+    </select>
+    <label for="condition">Condition:</label>
+    <input type="text" name="condition" id="condition" required>
+    <button type="submit">Create Alert</button>
+</form>
+
+<h3>Existing Alerts</h3>
+<ul>
+    {% for alert in alerts %}
+    <li>{{ alert.alert_type }}: {{ alert.condition }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Health Advisories</h3>
+<ul>
+    {% for advisory in advisories %}
+    <li>{{ advisory.message }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

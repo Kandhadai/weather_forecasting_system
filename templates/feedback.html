@@ -1,0 +1,29 @@
+<!-- templates/feedback.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Submit Feedback{% endblock %}
+
+{% block content %}
+<h2>Submit Feedback</h2>
+<form method="POST" action="{{ url_for('feedback') }}">
+    <label for="feedback_type">Feedback Type:</label>
+    <select id="feedback_type" name="feedback_type">
+        <option value="bug">Bug</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="other">Other</option>
+    </select>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <button type="submit">Submit Feedback</button>
+</form>
+
+{% if get_flashed_messages() %}
+<div class="flash-messages">
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

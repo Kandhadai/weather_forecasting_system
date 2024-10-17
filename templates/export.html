@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            {% if session['self'] %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('home') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <h1>Export Data</h1>
+    <form method="POST">
+        <label for="format">Format:</label>
+        <select name="format" required>
+            <option value="CSV">CSV</option>
+            <option value="JSON">JSON</option>
+        </select><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" name="location" required><br><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" required><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" required><br><br>
+
+        <input type="submit" value="Export Data">
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <footer>
+        <p>&copy; 2024 Weather App</p>
+    </footer>
+</body>
+</html>

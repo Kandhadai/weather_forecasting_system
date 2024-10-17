@@ -1,0 +1,8 @@
+[
+    {
+        "location": "New York",
+        "temperature": 18.5,
+        "humidity": 60.0,
+        "wind_speed": 10.0,
+        "conditions": "Partly Cloudy",
+        "date": 
